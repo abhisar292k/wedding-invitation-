@@ -868,6 +868,94 @@ footer {
 .gsap-left { opacity: 0; transform: translateX(-60px); }
 .gsap-right { opacity: 0; transform: translateX(60px); }
 .gsap-scale { opacity: 0; transform: scale(.88); }
+
+/* ═══ CAR DIRECTIONS ANIMATION ═══ */
+.dir-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px 13px 22px; border-radius: 8px; text-decoration: none;
+  font-family: var(--fd); font-size: 8px; letter-spacing: 3.5px;
+  text-transform: uppercase; cursor: none; border: none;
+  transition: transform .28s, box-shadow .28s;
+  white-space: nowrap; position: relative; overflow: hidden;
+}
+.dir-btn svg { width: 14px; height: 14px; flex-shrink: 0; transition: opacity .2s; }
+.dir-btn:hover { transform: translateY(-3px); }
+
+/* Dashed road that appears during animation */
+.dir-btn .road {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: repeating-linear-gradient(90deg,
+    rgba(255,255,255,.6) 0px, rgba(255,255,255,.6) 8px,
+    transparent 8px, transparent 18px);
+  opacity: 0; transform: scaleX(0); transform-origin: left;
+  transition: none; pointer-events: none;
+}
+
+/* Car emoji */
+.dir-car {
+  position: absolute; bottom: 5px; left: -32px;
+  font-size: 20px; pointer-events: none; opacity: 0;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.6));
+}
+
+/* Pin emoji */
+.dir-pin {
+  position: absolute; right: 6px; top: 50%;
+  transform: translateY(-60%) scale(0);
+  font-size: 16px; opacity: 0; pointer-events: none;
+}
+
+/* "Going..." label that swaps in during animation */
+.dir-label-default { transition: opacity .15s; }
+.dir-label-going   { position: absolute; left: 50%; transform: translateX(-50%); opacity: 0; font-size: 8px; letter-spacing: 3px; white-space: nowrap; transition: opacity .15s; }
+
+/* Active state triggered by JS */
+.dir-btn.driving .road {
+  opacity: 1;
+  animation: roadReveal .3s ease forwards;
+}
+@keyframes roadReveal {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.dir-btn.driving .dir-car {
+  animation: carDrive 1.6s cubic-bezier(.3,.8,.4,1) forwards;
+}
+@keyframes carDrive {
+  0%   { left: -32px; opacity: 1; bottom: 5px; }
+  8%   { opacity: 1; }
+  40%  { bottom: 8px; }
+  60%  { bottom: 4px; }
+  80%  { left: 72%; opacity: 1; bottom: 6px; }
+  92%  { left: 88%; opacity: 1; }
+  100% { left: 100%; opacity: 0; bottom: 5px; }
+}
+.dir-btn.driving .dir-pin {
+  animation: pinArrive .4s 1.3s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+@keyframes pinArrive {
+  0%   { opacity: 0; transform: translateY(-80%) scale(0); }
+  60%  { opacity: 1; transform: translateY(-70%) scale(1.4); }
+  100% { opacity: 1; transform: translateY(-60%) scale(1); }
+}
+.dir-btn.driving .dir-label-default { opacity: 0; }
+.dir-btn.driving .dir-label-going   { opacity: 1; }
+
+/* RSVP contact box */
+.rsvp-contact {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  margin-top: 20px;
+}
+.rsvp-ph {
+  display: flex; align-items: center; gap: 9px;
+  background: rgba(201,168,76,.07); border: 1px solid rgba(201,168,76,.2);
+  border-radius: 10px; padding: 12px 18px;
+  font-family: var(--fc); font-size: 15px; color: var(--gp);
+  text-decoration: none; cursor: none;
+  transition: all .3s;
+}
+.rsvp-ph:hover { background: rgba(201,168,76,.14); border-color: rgba(201,168,76,.45); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(201,168,76,.14); }
+.rsvp-ph-icon { font-size: 16px; }
 </style>
 </head>
 <body>
@@ -1024,64 +1112,72 @@ footer {
       "A soulful evening where qawwali meets the divine — and every note carries love"
     </p>
 
-    <!-- ── ALI BROTHERS SHOWCASE ── -->
+    <!-- ── ALI ZAIN SHOWCASE ── -->
     <div class="ali-showcase gsap-scale">
-      <!-- Full bleed hero image -->
-      <div class="ali-banner">
-        <img src="https://gigsar.s3.ap-south-1.amazonaws.com/Ali-Brothers/ELkKjlPSUt8Sj2sRZ9u-Y.webp"
-             alt="Ali Brothers performing live"
-             onerror="this.parentElement.style.background='linear-gradient(135deg,#030D20,#0A1A30)';this.style.display='none'">
-        <div class="ali-banner-overlay">
+      <!-- Hero banner -->
+      <div class="ali-banner" style="background:linear-gradient(135deg,#030D20,#0A1830,#030D20);min-height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+        <!-- Animated star particles behind name -->
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,168,76,.08),transparent);pointer-events:none;"></div>
+        <div class="ali-banner-overlay" style="position:relative;z-index:2;padding:36px 24px;text-align:center;">
           <div class="ali-banner-text">
             <div class="ali-live-badge">
               <div class="ali-live-dot"></div>
               <div class="ali-live-text">Live Performance</div>
             </div>
-            <div class="ali-big-name">ALI BROTHERS</div>
-            <div class="ali-tagline">Punjab's Most Celebrated Qawwali &amp; Sufi Ensemble</div>
+            <!-- Microphone SVG icon -->
+            <div style="margin:14px auto 10px;width:52px;height:52px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.6">
+                <rect x="9" y="2" width="6" height="11" rx="3"/>
+                <path d="M5 10a7 7 0 0014 0"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+            </div>
+            <div class="ali-big-name" style="font-size:clamp(28px,6vw,52px);letter-spacing:4px;">ALI ZAIN</div>
+            <div class="ali-tagline">Singer · Writer · Composer · Performer</div>
+            <a href="https://www.instagram.com/ali_zain_live" target="_blank" rel="noopener"
+               style="display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:7px 16px;border-radius:20px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);font-family:var(--fd);font-size:8px;letter-spacing:2.5px;color:var(--g);text-decoration:none;cursor:none;transition:all .3s;"
+               onmouseenter="this.style.background='rgba(201,168,76,.22)'" onmouseleave="this.style.background='rgba(201,168,76,.12)'">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+              @ali_zain_live · 13K Followers
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- Photo grid -->
+      <!-- Feature cards -->
       <div class="ali-body" id="aliBody">
-        <div class="ali-photo">
-          <img src="https://gigsar.s3.ap-south-1.amazonaws.com/Ali-Brothers/rqaW2XofX2ZkFGXSzkOCU.webp"
-               alt="Ali Brothers on stage"
-               onerror="this.style.display='none';this.parentElement.style.background='rgba(15,40,80,.5)'">
-          <div class="ali-photo-overlay"></div>
-          <div class="ali-photo-cap">Live at a grand wedding celebration</div>
+        <div class="ali-photo" style="background:linear-gradient(135deg,rgba(15,40,80,.8),rgba(5,20,50,.95));display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;">
+          <div style="font-size:36px;margin-bottom:12px;">🎤</div>
+          <div style="font-family:var(--fd);font-size:9px;letter-spacing:3px;color:var(--g);text-transform:uppercase;margin-bottom:8px;">Sufi &amp; Qawwali</div>
+          <div style="font-family:var(--fc);font-size:13px;color:rgba(253,246,227,.6);line-height:1.7;">Soulful renditions that stir the heart and elevate every soul in the room</div>
         </div>
-        <div class="ali-photo">
-          <img src="https://gigsar.s3.ap-south-1.amazonaws.com/Ali-Brothers/ngToqtO_ZoNej9Pfek3Gx.webp"
-               alt="Ali Brothers performing qawwali"
-               onerror="this.style.display='none';this.parentElement.style.background='rgba(15,40,80,.5)'">
-          <div class="ali-photo-overlay"></div>
-          <div class="ali-photo-cap">Soulful qawwali renditions</div>
+        <div class="ali-photo" style="background:linear-gradient(135deg,rgba(40,15,80,.8),rgba(20,5,50,.95));display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;">
+          <div style="font-size:36px;margin-bottom:12px;">🎵</div>
+          <div style="font-family:var(--fd);font-size:9px;letter-spacing:3px;color:var(--gl);text-transform:uppercase;margin-bottom:8px;">Original Compositions</div>
+          <div style="font-family:var(--fc);font-size:13px;color:rgba(253,246,227,.6);line-height:1.7;">Songwriter &amp; composer — every performance is an original journey of devotion</div>
         </div>
-        <div class="ali-photo">
-          <img src="https://gigsar.s3.ap-south-1.amazonaws.com/Ali-Brothers/8YFdeI6eyIWJF6EgU4ldM.webp"
-               alt="Ali Brothers in traditional attire"
-               onerror="this.style.display='none';this.parentElement.style.background='rgba(15,40,80,.5)'">
-          <div class="ali-photo-overlay"></div>
-          <div class="ali-photo-cap">Masters of Sufi devotional music</div>
+        <div class="ali-photo" style="background:linear-gradient(135deg,rgba(15,60,40,.8),rgba(5,30,20,.95));display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;">
+          <div style="font-size:36px;margin-bottom:12px;">🌙</div>
+          <div style="font-family:var(--fd);font-size:9px;letter-spacing:3px;color:#52B788;text-transform:uppercase;margin-bottom:8px;">Mehfil-e-Sama</div>
+          <div style="font-family:var(--fc);font-size:13px;color:rgba(253,246,227,.6);line-height:1.7;">Transforming the evening into a divine musical gathering of love &amp; light</div>
         </div>
       </div>
 
       <!-- Info strip -->
       <div class="ali-info-strip">
         <div class="ali-members">
-          <strong>Pervez Husan, Pervez Babloo &amp; Shahrukh</strong><br>
-          Three brothers — one voice that moves the soul
+          <strong>Ali Zain</strong><br>
+          Singer · Writer · Composer · Performer
         </div>
         <div class="ali-tags">
           <span class="atag">Qawwali</span>
           <span class="atag">Sufi</span>
-          <span class="atag">Punjab</span>
           <span class="atag">Live</span>
+          <span class="atag">Original</span>
         </div>
         <div class="ali-ig">
-          <span>213K</span> Instagram Followers
+          <span>13K</span> Instagram Followers
         </div>
       </div>
     </div>
@@ -1093,13 +1189,17 @@ footer {
     </div>
 
     <div class="brow gsap-up">
-      <a class="btn btn-g" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sufi+Night+-+Riddhi+%26+Ankit&dates=20260415T143000Z/20260416T020000Z&details=Live+Qawwali+by+Ali+Brothers+%F0%9F%8E%A4&location=Maverick,+Pakhowal+Rd,+Ludhiana" target="_blank" rel="noopener">
+      <a class="btn btn-g" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sufi+Night+-+Riddhi+%26+Ankit&dates=20260415T143000Z/20260416T020000Z&details=Live+Performance+by+Ali+Zain+%F0%9F%8E%A4&location=Maverick,+Pakhowal+Rd,+Ludhiana" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Add to Calendar
       </a>
-      <a class="btn btn-g" href="https://www.google.com/maps/dir/?api=1&destination=Maverick+Pakhowal+Road+Ludhiana+Punjab" target="_blank" rel="noopener">
+      <a class="dir-btn btn-g" href="https://www.google.com/maps/dir/?api=1&destination=Maverick+Pakhowal+Road+Ludhiana+Punjab" target="_blank" rel="noopener" onclick="driveAnim(event,this)">
+        <span class="road"></span>
+        <span class="dir-car">🚗</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Get Directions
+        <span class="dir-label-default">Get Directions</span>
+        <span class="dir-label-going">On the way… 🛣️</span>
+        <span class="dir-pin">📍</span>
       </a>
     </div>
   </div>
@@ -1148,9 +1248,13 @@ footer {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Add to Calendar
       </a>
-      <a class="btn btn-rose" href="https://www.google.com/maps/dir/?api=1&destination=Aagaz+Hotel+Ludhiana+Punjab" target="_blank" rel="noopener">
+      <a class="dir-btn btn-rose" href="https://www.google.com/maps/dir/?api=1&destination=Aagaz+Hotel+Ludhiana+Punjab" target="_blank" rel="noopener" onclick="driveAnim(event,this)">
+        <span class="road"></span>
+        <span class="dir-car">🚗</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Get Directions
+        <span class="dir-label-default">Get Directions</span>
+        <span class="dir-label-going">On the way… 🛣️</span>
+        <span class="dir-pin">📍</span>
       </a>
     </div>
   </div>
@@ -1252,7 +1356,7 @@ footer {
 
             <div class="meh-details-card">
               <div class="dr" style="border-color:rgba(82,183,136,.12);"><span class="di">📅</span><span class="dt">Saturday, 18 April 2026</span></div>
-              <div class="dr" style="border-color:rgba(82,183,136,.12);"><span class="di">⏰</span><span class="dt">5:00 PM onwards</span></div>
+              <div class="dr" style="border-color:rgba(82,183,136,.12);"><span class="di">⏰</span><span class="dt">7:00 PM onwards</span></div>
               <div class="dr" style="border-color:rgba(82,183,136,.12);border-bottom:none;"><span class="di">📍</span><span class="dt">Mehar Villa (Residence), Ludhiana</span></div>
             </div>
 
@@ -1274,9 +1378,13 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 Add to Calendar
               </a>
-              <a class="btn btn-teal" href="https://www.google.com/maps/dir/?api=1&destination=Mehar+Villa+Ludhiana+Punjab" target="_blank" rel="noopener">
+              <a class="dir-btn btn-teal" href="https://www.google.com/maps/dir/?api=1&destination=Mehar+Villa+Ludhiana+Punjab" target="_blank" rel="noopener" onclick="driveAnim(event,this)">
+                <span class="road"></span>
+                <span class="dir-car">🚗</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                Get Directions
+                <span class="dir-label-default">Get Directions</span>
+                <span class="dir-label-going">On the way… 🛣️</span>
+                <span class="dir-pin">📍</span>
               </a>
             </div>
           </div>
@@ -1333,9 +1441,13 @@ footer {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Add to Calendar
       </a>
-      <a class="btn btn-red" href="https://www.google.com/maps/dir/?api=1&destination=Stallone+Manor+Ludhiana+Punjab" target="_blank" rel="noopener">
+      <a class="dir-btn btn-red" href="https://www.google.com/maps/dir/?api=1&destination=Stallone+Manor+Ludhiana+Punjab" target="_blank" rel="noopener" onclick="driveAnim(event,this)">
+        <span class="road"></span>
+        <span class="dir-car">🚗</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Get Directions
+        <span class="dir-label-default">Get Directions</span>
+        <span class="dir-label-going">On the way… 🛣️</span>
+        <span class="dir-pin">📍</span>
       </a>
     </div>
   </div>
@@ -1375,6 +1487,21 @@ footer {
       <span class="ty-s">Shukriya!</span>
       <p style="font-family:var(--fc);font-size:17px;line-height:1.9;color:rgba(253,246,227,.6);">We're overjoyed and can't wait to celebrate with you.<br><br>Your presence means the world to us. See you at the festivities! 🎉✨</p>
       <div class="orn" style="margin-top:22px;"><span>✦</span></div>
+    </div>
+
+    <!-- Contact Numbers -->
+    <div class="gsap-up" style="margin-top:28px;">
+      <div style="font-family:var(--fd);font-size:8.5px;letter-spacing:4px;color:rgba(201,168,76,.45);text-transform:uppercase;margin-bottom:14px;">For Enquiries</div>
+      <div class="rsvp-contact">
+        <a class="rsvp-ph" href="tel:+919569823939">
+          <span class="rsvp-ph-icon">📞</span>
+          <span>+91 95698 23939</span>
+        </a>
+        <a class="rsvp-ph" href="tel:+919216523405">
+          <span class="rsvp-ph-icon">📞</span>
+          <span>+91 92165 23405</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -1713,6 +1840,28 @@ function submitRSVP() {
     }
   });
 }
+/* ══════════════════════════════════════════
+   CAR DIRECTIONS ANIMATION
+══════════════════════════════════════════ */
+function driveAnim(e, btn) {
+  // If already animating, let it open immediately
+  if (btn.classList.contains('driving')) return;
+
+  e.preventDefault(); // stop link from opening
+  const href = btn.getAttribute('href');
+
+  btn.classList.add('driving');
+
+  // After animation completes (1.9s), open the link
+  setTimeout(() => {
+    window.open(href, '_blank', 'noopener');
+    // Reset button after a beat
+    setTimeout(() => {
+      btn.classList.remove('driving');
+    }, 600);
+  }, 1900);
+}
+
 </script>
 </body>
 </html>
