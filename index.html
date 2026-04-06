@@ -807,6 +807,186 @@ body::before {
 .tll { font-family: var(--fc); font-size: clamp(16px, 2.4vw, 19px); color: var(--cream); font-weight: 500; }
 
 /* ═══════════════════════════════════════════════
+   WEDDING PERFORMER — Sai Shah (Horizontal Split)
+═══════════════════════════════════════════════ */
+.sai-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgba(192,57,43,.32);
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 26px 0;
+  background: rgba(10,2,2,.75);
+  backdrop-filter: blur(12px);
+  position: relative;
+}
+@media (max-width: 680px) {
+  .sai-card { grid-template-columns: 1fr; }
+}
+
+/* === LEFT: Photo Panel === */
+.sai-photo-panel {
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #1c0404, #0d0202);
+}
+.sai-glow-ring {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(192,57,43,.18), transparent 70%);
+  pointer-events: none; animation: saiGlowPulse 3s ease-in-out infinite;
+}
+@keyframes saiGlowPulse {
+  0%,100% { opacity: .7; } 50% { opacity: 1; }
+}
+.sai-img-wrap {
+  position: absolute; inset: 0;
+}
+.sai-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  filter: brightness(.78) saturate(1.1) contrast(1.05);
+  transition: transform 8s ease;
+}
+.sai-card:hover .sai-img { transform: scale(1.06); }
+.sai-img-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to right, transparent 55%, rgba(10,2,2,.85) 100%),
+    linear-gradient(to top, rgba(10,2,2,.6) 0%, transparent 50%),
+    linear-gradient(160deg, rgba(192,57,43,.12), transparent 55%);
+}
+/* LIVE pill on image */
+.sai-live-pill {
+  position: absolute; top: 16px; left: 16px;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(10,2,2,.65); border: 1px solid rgba(192,57,43,.5);
+  border-radius: 30px; padding: 6px 14px;
+  font-family: var(--fd); font-size: 7.5px; letter-spacing: 3px;
+  color: #E8A0A0; text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+.sai-live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #ff5555; animation: livePulse 1.2s ease-in-out infinite;
+}
+/* Decorative corner frames on the image */
+.sai-corner {
+  position: absolute; width: 22px; height: 22px;
+  border-color: rgba(201,168,76,.5); border-style: solid;
+  pointer-events: none;
+}
+.sai-corner-tl { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
+.sai-corner-br { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
+
+/* === RIGHT: Info Panel === */
+.sai-info-panel {
+  padding: 36px 32px;
+  display: flex; flex-direction: column; justify-content: center; gap: 14px;
+  background: linear-gradient(135deg, rgba(25,4,4,.9), rgba(15,2,2,.97));
+  position: relative;
+}
+.sai-info-panel::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 10% 50%, rgba(192,57,43,.07), transparent 70%);
+  pointer-events: none;
+}
+@media (max-width: 480px) { .sai-info-panel { padding: 28px 22px; } }
+
+.sai-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--fd); font-size: 9px; letter-spacing: 4px;
+  color: rgba(232,160,160,.75); text-transform: uppercase;
+  font-weight: 600;
+}
+.sai-name {
+  font-family: var(--fs);
+  font-size: clamp(56px, 10vw, 88px);
+  color: #E8A0A0;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(192,57,43,.6), 0 0 90px rgba(192,57,43,.25);
+  position: relative; z-index: 1;
+  font-weight: 400; /* Great Vibes is script, weight is natural */
+}
+.sai-role {
+  font-family: var(--fd); font-style: normal;
+  font-size: clamp(9px,1.4vw,11px);
+  color: rgba(232,160,160,.75);
+  letter-spacing: 3.5px; text-transform: uppercase;
+  font-weight: 600;
+}
+.sai-divider {
+  display: flex; align-items: center; gap: 10px; margin: 2px 0;
+}
+.sai-divider-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, rgba(192,57,43,.35), transparent);
+}
+.sai-divider-diamond {
+  width: 5px; height: 5px; background: rgba(192,57,43,.7);
+  transform: rotate(45deg); flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(192,57,43,.5);
+}
+.sai-quote {
+  font-family: var(--fp); font-style: italic;
+  font-size: clamp(13px,1.7vw,15px);
+  color: rgba(253,246,227,.6);
+  line-height: 1.85;
+  border-left: 2px solid rgba(192,57,43,.4);
+  padding-left: 14px;
+  position: relative; z-index: 1;
+}
+.sai-stats {
+  display: flex; align-items: center; gap: 0;
+  background: rgba(192,57,43,.08);
+  border: 1px solid rgba(192,57,43,.2);
+  border-radius: 10px; overflow: hidden;
+  position: relative; z-index: 1;
+}
+.sai-stat {
+  flex: 1; padding: 14px 10px; text-align: center;
+}
+.sai-stat-n {
+  font-family: var(--fdd); font-size: 18px;
+  color: #E8A0A0; letter-spacing: 1px; margin-bottom: 4px;
+  font-weight: 700;
+}
+.sai-stat-l {
+  font-family: var(--fd); font-size: 7.5px; letter-spacing: 2.5px;
+  color: rgba(232,160,160,.55); text-transform: uppercase;
+}
+.sai-stat-sep {
+  width: 1px; height: 36px; background: rgba(192,57,43,.2); flex-shrink: 0;
+}
+.sai-tags {
+  display: flex; gap: 7px; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.sai-tag {
+  font-family: var(--fd); font-size: 7px; letter-spacing: 1.5px;
+  padding: 6px 12px; border: 1px solid rgba(192,57,43,.25);
+  border-radius: 20px; color: rgba(232,160,160,.72); text-transform: uppercase;
+  background: rgba(192,57,43,.06);
+}
+.sai-cta {
+  display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+  padding: 11px 22px; border-radius: 8px;
+  font-family: var(--fd); font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; text-decoration: none; cursor: none;
+  background: transparent; border: 1px solid rgba(192,57,43,.4);
+  color: #E8A0A0; transition: all .3s;
+  position: relative; z-index: 1;
+}
+.sai-cta:hover {
+  background: rgba(192,57,43,.15);
+  border-color: rgba(192,57,43,.7);
+  box-shadow: 0 0 26px rgba(192,57,43,.2);
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════
    RSVP
 ═══════════════════════════════════════════════ */
 #rsvp {
@@ -821,7 +1001,7 @@ body::before {
   padding: 24px 30px; margin: 0 0 20px; text-align: center;
 }
 .hcard-t { font-family: var(--fd); font-size: 8.5px; letter-spacing: 4px; text-transform: uppercase; color: rgba(201,168,76,.52); margin-bottom: 16px; }
-.hcard-n { font-family: var(--fc); font-size: clamp(14px, 2.2vw, 17.5px); color: var(--gp); line-height: 2; }
+.hcard-n { font-family: var(--fc); font-size: clamp(15px, 2.2vw, 18px); color: var(--gp); line-height: 2; }
 .hcard-n em { font-style: italic; color: rgba(253,246,227,.46); font-size: .92em; }
 .hcard-n strong { font-weight: 600; color: var(--gl); }
 .fg2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -930,60 +1110,98 @@ footer::after {
 .gsap-right { opacity: 0; transform: translateX(60px); }
 .gsap-scale { opacity: 0; transform: scale(.88); }
 
-/* ═══ CAR DIRECTIONS ANIMATION ═══ */
+/* ═══════════════════════════════════════════════
+   GET DIRECTIONS — CAR ANIMATION (CLEAN)
+═══════════════════════════════════════════════ */
 .dir-btn-wrap { position: relative; display: inline-flex; }
+
 .dir-btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 13px 22px; border-radius: 8px; text-decoration: none;
   font-family: var(--fd); font-size: 8px; letter-spacing: 3.5px;
-  text-transform: uppercase; cursor: none; border: none;
-  transition: transform .28s, box-shadow .28s;
+  text-transform: uppercase; cursor: none;
   white-space: nowrap; position: relative; overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  isolation: isolate;
 }
-.dir-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+/* Keep border from .btn-* classes, just ensure text color stays */
+.dir-btn svg { width: 14px; height: 14px; flex-shrink: 0; position: relative; z-index: 2; }
+.dir-btn span { position: relative; z-index: 2; }
 .dir-btn:hover { transform: translateY(-3px); }
 
-/* Road track that appears on hover */
+/* Road bg — slides UP from below, starts hidden below the button */
 .dir-btn::before {
   content: '';
-  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-  background: repeating-linear-gradient(90deg, rgba(255,255,255,.5) 0px, rgba(255,255,255,.5) 8px, transparent 8px, transparent 16px);
-  opacity: 0; transform: scaleX(0); transform-origin: left;
-  transition: opacity .2s, transform .4s ease;
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px, transparent 20px,
+      rgba(255,255,255,.22) 20px, rgba(255,255,255,.22) 34px
+    );
+  background-size: 54px 3px;
+  background-position: 0 bottom;
+  background-repeat: repeat-x;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity .35s .15s ease;
 }
-.dir-btn:hover::before { opacity: 1; transform: scaleX(1); }
+.dir-btn:hover::before { opacity: 1; }
 
-/* Car overlay animation */
+/* No ::after override — remove dust from pseudo */
+.dir-btn::after { content: none; }
+
+/* CAR emoji */
 .dir-car {
-  position: absolute; bottom: 4px; left: -28px;
-  font-size: 18px; pointer-events: none;
-  transition: none;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.5));
+  position: absolute;
+  bottom: 5px;
+  left: -40px;
+  font-size: 19px;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.5));
 }
 .dir-btn:hover .dir-car {
-  animation: carDrive .9s cubic-bezier(.22,1,.36,1) forwards;
+  animation: carRace 1.4s .1s cubic-bezier(.2,.8,.4,1) forwards;
 }
-@keyframes carDrive {
-  0%   { left: -28px; opacity: 1; }
-  70%  { left: 50%;   opacity: 1; }
-  85%  { left: 90%;   opacity: 1; }
-  100% { left: 108%;  opacity: 0; }
+@keyframes carRace {
+  0%   { left: -40px; opacity: 0; }
+  10%  { opacity: 1; }
+  80%  { left: 82%; opacity: 1; }
+  100% { left: 110%; opacity: 0; }
 }
 
-/* Pin pulse at destination */
+/* PIN drop at end */
 .dir-pin {
-  position: absolute; right: 8px; top: 50%;
-  transform: translateY(-50%); font-size: 14px;
-  opacity: 0; pointer-events: none;
+  position: absolute; right: 11px; top: 50%;
+  transform: translateY(-80%) scale(0);
+  font-size: 15px; opacity: 0;
+  pointer-events: none; z-index: 3;
 }
 .dir-btn:hover .dir-pin {
-  animation: pinPop .35s .75s ease forwards;
+  animation: pinDrop .45s 1.1s cubic-bezier(.34,1.56,.64,1) forwards;
 }
-@keyframes pinPop {
-  0%   { opacity: 0; transform: translateY(-65%) scale(0); }
-  70%  { opacity: 1; transform: translateY(-65%) scale(1.3); }
+@keyframes pinDrop {
+  0%   { opacity: 0; transform: translateY(-160%) scale(0); }
+  70%  { opacity: 1; transform: translateY(-40%) scale(1.35); }
   100% { opacity: 1; transform: translateY(-50%) scale(1); }
 }
+
+/* Speed lines */
+.dir-speed {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden;
+}
+.dir-speed::before, .dir-speed::after {
+  content: '';
+  position: absolute; top: 50%; height: 1px; opacity: 0;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,.2), transparent);
+  transition: opacity .3s .1s;
+}
+.dir-speed::before { left: 5%; right: 35%; transform: translateY(-4px); }
+.dir-speed::after  { left: 8%; right: 50%; transform: translateY(4px); }
+.dir-btn:hover .dir-speed::before,
+.dir-btn:hover .dir-speed::after { opacity: 1; }
 
 /* RSVP contact box */
 .rsvp-contact {
@@ -1510,8 +1728,9 @@ footer::after {
       </a>
       <a class="dir-btn btn-g" href="https://www.google.com/maps/dir/?api=1&destination=Maverick+Resort+Pakhowal+Road+Ludhiana+Punjab" target="_blank" rel="noopener">
         <span class="dir-car">🚗</span>
+        <span class="dir-speed"></span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Get Directions
+        <span>Get Directions</span>
         <span class="dir-pin">📍</span>
       </a>
     </div>
@@ -1564,8 +1783,9 @@ footer::after {
       </a>
       <a class="dir-btn btn-rose" href="https://www.google.com/maps/dir/?api=1&destination=Aagaz+Hotel+Ludhiana+Punjab" target="_blank" rel="noopener">
         <span class="dir-car">🚗</span>
+        <span class="dir-speed"></span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Get Directions
+        <span>Get Directions</span>
         <span class="dir-pin">📍</span>
       </a>
     </div>
@@ -1693,8 +1913,9 @@ footer::after {
               </a>
               <a class="dir-btn btn-teal" href="https://www.google.com/maps/dir/?api=1&destination=Mehar+Villa+Ludhiana+Punjab" target="_blank" rel="noopener">
                 <span class="dir-car">🚗</span>
+                <span class="dir-speed"></span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                Get Directions
+                <span>Get Directions</span>
                 <span class="dir-pin">📍</span>
               </a>
             </div>
@@ -1748,6 +1969,99 @@ footer::after {
       </div>
     </div>
 
+    <!-- ── SAI SHAH PERFORMER SHOWCASE ── -->
+    <div class="sai-card gsap-scale">
+
+      <!-- LEFT — Photo panel -->
+      <div class="sai-photo-panel">
+        <!-- Glow ring behind photo -->
+        <div class="sai-glow-ring"></div>
+
+        <!-- Performer image — Sai Shah live on stage -->
+        <div class="sai-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=85"
+            alt="Sai Shah — Live Performer"
+            class="sai-img"
+            onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#2a0808,#0d0202);\'><div style=\'font-size:80px;margin-bottom:18px;\'>🎤</div><div style=\'font-family:var(--fdd);font-size:22px;letter-spacing:4px;color:#E8A0A0;\'>SAI SHAH</div></div>'">
+          <div class="sai-img-overlay"></div>
+
+          <!-- Floating LIVE badge pinned to image -->
+          <div class="sai-live-pill">
+            <span class="sai-live-dot"></span>
+            <span>Live · Apr 20</span>
+          </div>
+        </div>
+
+        <!-- Decorative corner bars -->
+        <div class="sai-corner sai-corner-tl"></div>
+        <div class="sai-corner sai-corner-br"></div>
+      </div>
+
+      <!-- RIGHT — Info panel -->
+      <div class="sai-info-panel">
+
+        <!-- Eyebrow -->
+        <div class="sai-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E8A0A0" stroke-width="1.8">
+            <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+          Performing at the Wedding
+        </div>
+
+        <!-- Name -->
+        <div class="sai-name">Sai Shah</div>
+        <div class="sai-role">Singer · Lyricist · Performer</div>
+
+        <!-- Divider -->
+        <div class="sai-divider">
+          <div class="sai-divider-line"></div>
+          <div class="sai-divider-diamond"></div>
+          <div class="sai-divider-line"></div>
+        </div>
+
+        <!-- Quote -->
+        <p class="sai-quote">"Punjabi &amp; Sufi melodies — every note crafted to make your wedding night unforgettable"</p>
+
+        <!-- Stats row -->
+        <div class="sai-stats">
+          <div class="sai-stat">
+            <div class="sai-stat-n">41K</div>
+            <div class="sai-stat-l">Instagram</div>
+          </div>
+          <div class="sai-stat-sep"></div>
+          <div class="sai-stat">
+            <div class="sai-stat-n">105+</div>
+            <div class="sai-stat-l">Posts</div>
+          </div>
+          <div class="sai-stat-sep"></div>
+          <div class="sai-stat">
+            <div class="sai-stat-n">Live</div>
+            <div class="sai-stat-l">Performer</div>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="sai-tags">
+          <span class="sai-tag">🎤 Punjabi</span>
+          <span class="sai-tag">🌙 Sufi</span>
+          <span class="sai-tag">💃 Sangeet</span>
+          <span class="sai-tag">✨ Reception</span>
+        </div>
+
+        <!-- CTA -->
+        <a href="https://www.instagram.com/saishah_skay?igsh=MWR6dGZyMzM1N3N6ZQ==" target="_blank" rel="noopener" class="sai-cta">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+            <circle cx="17.5" cy="6.5" r="1"/>
+          </svg>
+          Follow @saishah_skay
+        </a>
+
+      </div>
+    </div>
+
     <div class="brow gsap-up">
       <a class="btn btn-red" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+-+Riddhi+%26+Ankit&dates=20260420T113000Z/20260420T210000Z&details=Pheras+5PM+%F0%9F%94%A5+%7C+Baarat+8PM+%F0%9F%91%91+%7C+Dinner+9PM+%F0%9F%8D%BD&location=Stallone+Manor,+Ludhiana" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -1755,8 +2069,9 @@ footer::after {
       </a>
       <a class="dir-btn btn-red" href="https://www.google.com/maps/dir/?api=1&destination=Stallone+Manor+Ludhiana+Punjab" target="_blank" rel="noopener">
         <span class="dir-car">🚗</span>
+        <span class="dir-speed"></span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Get Directions
+        <span>Get Directions</span>
         <span class="dir-pin">📍</span>
       </a>
     </div>
@@ -1772,7 +2087,7 @@ footer::after {
 
   <div class="rsvp-in">
     <span class="eyebrow gsap-up">We'd Love Your Presence</span>
-    <h2 class="gsap-up" style="font-family:var(--fs);font-size:clamp(58px,10vw,96px);color:var(--gl);text-shadow:0 0 55px rgba(201,168,76,.44);line-height:1;">RSVP</h2>
+    <h2 class="gsap-up" style="font-family:var(--fs);font-size:clamp(46px,8vw,76px);color:var(--gl);text-shadow:0 0 55px rgba(201,168,76,.44);line-height:1;">RSVP</h2>
     <p class="gsap-up" style="font-family:var(--fp);font-style:italic;font-size:clamp(14px,2vw,17px);color:rgba(253,246,227,.5);margin-bottom:24px;">
       "Your presence will make our celebration truly complete"
     </p>
@@ -1914,7 +2229,7 @@ window.addEventListener('load', () => {
         .to('.h-date', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, '-=.6')
         .to('.h-cta', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, '-=.5');
     }, 300);
-  }, 2200);
+  }, 3500);
 });
 
 /* ══════════════════════════════════════════
