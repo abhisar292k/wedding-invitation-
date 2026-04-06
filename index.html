@@ -993,8 +993,9 @@ footer::after {
 .rsvp-ph {
   display: flex; align-items: center; gap: 9px;
   background: rgba(201,168,76,.07); border: 1px solid rgba(201,168,76,.2);
-  border-radius: 10px; padding: 12px 18px;
-  font-family: var(--fc); font-size: 15px; color: var(--gp);
+  border-radius: 10px; padding: 14px 22px;
+  font-family: var(--fp); font-size: clamp(17px, 3vw, 21px); font-weight: 700;
+  color: var(--gl); letter-spacing: 0.5px;
   text-decoration: none; cursor: none;
   transition: all .3s;
 }
@@ -1588,7 +1589,7 @@ footer::after {
     </div>
 
     <div class="meh-card-wrap">
-      <div class="meh-card" id="mehCard" data-tilt data-tilt-max="4" data-tilt-speed="600" data-tilt-glare="true" data-tilt-max-glare=".08">
+      <div class="meh-card" id="mehCard">
         <div class="meh-inner">
 
           <!-- LEFT: Illustration -->
@@ -2136,13 +2137,7 @@ initParticles('c-rsvp',    ['#C9A84C','#E8C97F','#fff','#F5E6C0']);
 /* ══════════════════════════════════════════
    VANILLA TILT — Mehendi card
 ══════════════════════════════════════════ */
-window.addEventListener('load', () => {
-  if (typeof VanillaTilt !== 'undefined') {
-    VanillaTilt.init(document.querySelector('[data-tilt]'), {
-      max: 4, speed: 600, glare: true, 'max-glare': .08, scale: 1.01
-    });
-  }
-});
+/* VanillaTilt disabled on Mehendi card — card stays flat */
 
 /* ══════════════════════════════════════════
    NAV DOTS
