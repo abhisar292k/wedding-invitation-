@@ -234,10 +234,10 @@ body::before {
 .btn-red:hover { border-color: #C0392B; box-shadow: 0 0 28px rgba(192,57,43,.3); }
 
 /* DETAIL ROWS */
-.dr { display: flex; align-items: center; gap: 13px; padding: 10px 0; border-bottom: 1px solid rgba(201,168,76,.07); font-family: var(--fc); font-size: clamp(14px, 2vw, 16px); }
+.dr { display: flex; align-items: center; gap: 13px; padding: 12px 0; border-bottom: 1px solid rgba(201,168,76,.07); font-family: var(--fc); font-size: clamp(16px, 2.4vw, 19px); }
 .dr:last-child { border-bottom: none; }
-.di { font-size: 14px; width: 22px; text-align: center; flex-shrink: 0; }
-.dt { color: var(--gp); }
+.di { font-size: 18px; width: 26px; text-align: center; flex-shrink: 0; }
+.dt { color: var(--gp); font-size: clamp(16px, 2.4vw, 19px); font-weight: 500; letter-spacing: 0.3px; }
 
 /* ═══════════════════════════════════════════════
    HERO
@@ -385,7 +385,7 @@ body::before {
   margin-bottom: 8px;
   opacity: 0;
 }
-.h-heart { animation: hb 1.6s ease-in-out infinite; display: inline-block; }
+.h-heart { animation: hb 1.6s ease-in-out infinite; display: inline-block; font-size: 0.42em; vertical-align: middle; position: relative; top: -0.08em; }
 @keyframes hb { 0%,100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 .h-sub {
   font-family: var(--fp); font-size: clamp(14px, 2.4vw, 20px); font-style: italic;
@@ -459,10 +459,11 @@ body::before {
 /* Sufi inner */
 .sufi-in { position: relative; z-index: 10; max-width: 900px; width: 100%; text-align: center; }
 .bless {
-  font-family: var(--fc); font-size: clamp(13px, 1.85vw, 15.5px);
-  color: rgba(253,246,227,.4); line-height: 2.1; font-style: italic; margin-bottom: 24px;
+  font-family: var(--fc); font-size: clamp(16px, 2.1vw, 19px);
+  color: rgba(253,246,227,.78); line-height: 2.0; font-style: italic; margin-bottom: 24px;
 }
-.bless strong { color: rgba(253,246,227,.7); font-weight: 600; }
+.bless strong { color: rgba(253,246,227,.92); font-weight: 600; font-style: normal; }
+.bless em { color: var(--gp); font-style: italic; font-weight: 500; }
 
 /* ─── ALI BROTHERS SHOWCASE ─── */
 .ali-showcase {
@@ -801,9 +802,9 @@ body::before {
 .tl { display: flex; flex-direction: column; margin: 16px 0; text-align: left; }
 .tlr { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(201,168,76,.1); }
 .tlr:last-child { border-bottom: none; }
-.tlt { font-family: var(--fd); font-size: 10px; letter-spacing: 2px; color: var(--g); min-width: 70px; text-align: right; }
+.tlt { font-family: var(--fd); font-size: 12px; letter-spacing: 2px; color: var(--g); min-width: 80px; text-align: right; }
 .tlp { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 10px currentColor; }
-.tll { font-family: var(--fc); font-size: clamp(14px, 2.1vw, 17px); color: var(--cream); }
+.tll { font-family: var(--fc); font-size: clamp(16px, 2.4vw, 19px); color: var(--cream); font-weight: 500; }
 
 /* ═══════════════════════════════════════════════
    RSVP
@@ -854,14 +855,74 @@ body::before {
 
 /* FOOTER */
 footer {
-  background: #020202; padding: 56px 24px 44px;
-  text-align: center; border-top: 1px solid rgba(201,168,76,.1);
+  background: linear-gradient(180deg, #020202 0%, #060304 100%);
+  padding: 70px 24px 50px;
+  text-align: center;
+  border-top: 1px solid rgba(201,168,76,.22);
+  position: relative;
+  overflow: hidden;
 }
-.ft-s { font-family: var(--fs); font-size: 48px; color: var(--g); display: block; margin-bottom: 10px; text-shadow: 0 0 30px rgba(201,168,76,.38); }
-.ft-t { font-family: var(--fd); font-size: 8.5px; letter-spacing: 4px; color: rgba(253,246,227,.17); text-transform: uppercase; margin: 5px 0; }
-.ft-nav { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
-.ftn { font-family: var(--fd); font-size: 7.5px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(201,168,76,.45); background: none; border: 1px solid rgba(201,168,76,.14); border-radius: 5px; padding: 8px 14px; cursor: none; transition: all .25s; }
-.ftn:hover { border-color: rgba(201,168,76,.4); color: var(--g); }
+footer::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 200px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--g), transparent);
+}
+footer::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ft-ornament {
+  display: flex; align-items: center; gap: 16px;
+  max-width: 300px; margin: 0 auto 28px;
+}
+.ft-ornament-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,.45), transparent);
+}
+.ft-ornament-diamond {
+  width: 7px; height: 7px; background: var(--g);
+  transform: rotate(45deg); flex-shrink: 0;
+  box-shadow: 0 0 10px var(--g);
+}
+.ft-s {
+  font-family: var(--fs); font-size: 58px; color: var(--g);
+  display: block; margin-bottom: 6px;
+  text-shadow: 0 0 40px rgba(201,168,76,.55), 0 0 80px rgba(201,168,76,.2);
+  position: relative; z-index: 1;
+}
+.ft-heart { font-size: 0.5em; vertical-align: middle; }
+.ft-t {
+  font-family: var(--fc); font-size: 15px; letter-spacing: 1px;
+  color: rgba(253,246,227,.75); margin: 8px 0;
+  font-style: italic; position: relative; z-index: 1;
+}
+.ft-date {
+  font-family: var(--fd); font-size: 10px; letter-spacing: 5px;
+  color: rgba(201,168,76,.7); text-transform: uppercase;
+  margin: 12px 0 28px; position: relative; z-index: 1;
+}
+.ft-divider {
+  width: 100%; max-width: 400px; height: 1px; margin: 20px auto;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.25), transparent);
+  position: relative; z-index: 1;
+}
+.ft-nav { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 24px; position: relative; z-index: 1; }
+.ftn {
+  font-family: var(--fd); font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(253,246,227,.7);
+  background: rgba(255,255,255,.04); border: 1px solid rgba(201,168,76,.28);
+  border-radius: 6px; padding: 10px 16px; cursor: none; transition: all .28s;
+  font-weight: 500;
+}
+.ftn:hover { border-color: var(--g); color: var(--gl); background: rgba(201,168,76,.1); box-shadow: 0 0 20px rgba(201,168,76,.15); transform: translateY(-2px); }
+.ft-copy {
+  font-family: var(--fd); font-size: 8px; letter-spacing: 3px;
+  color: rgba(253,246,227,.28); text-transform: uppercase;
+  margin-top: 32px; position: relative; z-index: 1;
+}
 
 /* GSAP initial states — override in JS */
 .gsap-up { opacity: 0; transform: translateY(50px); }
@@ -870,76 +931,59 @@ footer {
 .gsap-scale { opacity: 0; transform: scale(.88); }
 
 /* ═══ CAR DIRECTIONS ANIMATION ═══ */
+.dir-btn-wrap { position: relative; display: inline-flex; }
 .dir-btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 13px 28px 13px 22px; border-radius: 8px; text-decoration: none;
+  padding: 13px 22px; border-radius: 8px; text-decoration: none;
   font-family: var(--fd); font-size: 8px; letter-spacing: 3.5px;
   text-transform: uppercase; cursor: none; border: none;
   transition: transform .28s, box-shadow .28s;
   white-space: nowrap; position: relative; overflow: hidden;
 }
-.dir-btn svg { width: 14px; height: 14px; flex-shrink: 0; transition: opacity .2s; }
+.dir-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
 .dir-btn:hover { transform: translateY(-3px); }
 
-/* Dashed road that appears during animation */
-.dir-btn .road {
+/* Road track that appears on hover */
+.dir-btn::before {
+  content: '';
   position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-  background: repeating-linear-gradient(90deg,
-    rgba(255,255,255,.6) 0px, rgba(255,255,255,.6) 8px,
-    transparent 8px, transparent 18px);
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.5) 0px, rgba(255,255,255,.5) 8px, transparent 8px, transparent 16px);
   opacity: 0; transform: scaleX(0); transform-origin: left;
-  transition: none; pointer-events: none;
+  transition: opacity .2s, transform .4s ease;
 }
+.dir-btn:hover::before { opacity: 1; transform: scaleX(1); }
 
-/* Car emoji */
+/* Car overlay animation */
 .dir-car {
-  position: absolute; bottom: 5px; left: -32px;
-  font-size: 20px; pointer-events: none; opacity: 0;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,.6));
+  position: absolute; bottom: 4px; left: -28px;
+  font-size: 18px; pointer-events: none;
+  transition: none;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.5));
 }
-
-/* Pin emoji */
-.dir-pin {
-  position: absolute; right: 6px; top: 50%;
-  transform: translateY(-60%) scale(0);
-  font-size: 16px; opacity: 0; pointer-events: none;
-}
-
-/* "Going..." label that swaps in during animation */
-.dir-label-default { transition: opacity .15s; }
-.dir-label-going   { position: absolute; left: 50%; transform: translateX(-50%); opacity: 0; font-size: 8px; letter-spacing: 3px; white-space: nowrap; transition: opacity .15s; }
-
-/* Active state triggered by JS */
-.dir-btn.driving .road {
-  opacity: 1;
-  animation: roadReveal .3s ease forwards;
-}
-@keyframes roadReveal {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-.dir-btn.driving .dir-car {
-  animation: carDrive 1.6s cubic-bezier(.3,.8,.4,1) forwards;
+.dir-btn:hover .dir-car {
+  animation: carDrive .9s cubic-bezier(.22,1,.36,1) forwards;
 }
 @keyframes carDrive {
-  0%   { left: -32px; opacity: 1; bottom: 5px; }
-  8%   { opacity: 1; }
-  40%  { bottom: 8px; }
-  60%  { bottom: 4px; }
-  80%  { left: 72%; opacity: 1; bottom: 6px; }
-  92%  { left: 88%; opacity: 1; }
-  100% { left: 100%; opacity: 0; bottom: 5px; }
+  0%   { left: -28px; opacity: 1; }
+  70%  { left: 50%;   opacity: 1; }
+  85%  { left: 90%;   opacity: 1; }
+  100% { left: 108%;  opacity: 0; }
 }
-.dir-btn.driving .dir-pin {
-  animation: pinArrive .4s 1.3s cubic-bezier(.34,1.56,.64,1) forwards;
+
+/* Pin pulse at destination */
+.dir-pin {
+  position: absolute; right: 8px; top: 50%;
+  transform: translateY(-50%); font-size: 14px;
+  opacity: 0; pointer-events: none;
 }
-@keyframes pinArrive {
-  0%   { opacity: 0; transform: translateY(-80%) scale(0); }
-  60%  { opacity: 1; transform: translateY(-70%) scale(1.4); }
-  100% { opacity: 1; transform: translateY(-60%) scale(1); }
+.dir-btn:hover .dir-pin {
+  animation: pinPop .35s .75s ease forwards;
 }
-.dir-btn.driving .dir-label-default { opacity: 0; }
-.dir-btn.driving .dir-label-going   { opacity: 1; }
+@keyframes pinPop {
+  0%   { opacity: 0; transform: translateY(-65%) scale(0); }
+  70%  { opacity: 1; transform: translateY(-65%) scale(1.3); }
+  100% { opacity: 1; transform: translateY(-50%) scale(1); }
+}
 
 /* RSVP contact box */
 .rsvp-contact {
@@ -956,6 +1000,273 @@ footer {
 }
 .rsvp-ph:hover { background: rgba(201,168,76,.14); border-color: rgba(201,168,76,.45); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(201,168,76,.14); }
 .rsvp-ph-icon { font-size: 16px; }
+
+/* ═══════════════════════════════════════════════
+   SECTION BACKGROUND IMAGES
+═══════════════════════════════════════════════ */
+.sbgi {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  pointer-events: none; z-index: 0;
+  will-change: transform;
+  animation: sectionKB 28s ease-in-out infinite alternate;
+}
+@keyframes sectionKB {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.07); }
+}
+
+/* Per-section tinting */
+#sufi   .sbgi { filter: brightness(0.12) saturate(1.5) hue-rotate(5deg);   object-position: center 40%; }
+#haldi  .sbgi { filter: brightness(0.14) saturate(1.8) hue-rotate(-10deg); object-position: center 55%; }
+#mehendi .sbgi{ filter: brightness(0.11) saturate(1.4) hue-rotate(100deg); object-position: center 50%; }
+#wedding .sbgi{ filter: brightness(0.13) saturate(1.2) hue-rotate(-5deg);  object-position: center 40%; }
+#rsvp   .sbgi { filter: brightness(0.10) saturate(0.7);                    object-position: center 50%; }
+
+/* ── Glow overlays per section (on top of image) ── */
+#sufi::before   { content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(15,40,95,.55) 0%, transparent 70%),
+              radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(1,5,20,.8) 80%); }
+#haldi::before  { content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background: radial-gradient(ellipse 80% 65% at 50% 42%, rgba(232,121,154,.18) 0%, transparent 68%),
+              radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(16,2,7,.85) 80%); }
+#mehendi::before { content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background: radial-gradient(ellipse 80% 65% at 50% 50%, rgba(45,106,79,.22) 0%, transparent 70%),
+              radial-gradient(ellipse 100% 100% at 50% 50%, transparent 35%, rgba(1,8,10,.88) 80%); }
+#wedding::before { content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background: radial-gradient(ellipse 90% 75% at 50% 42%, rgba(139,26,26,.26) 0%, transparent 70%),
+              radial-gradient(ellipse 100% 100% at 50% 50%, transparent 38%, rgba(11,1,1,.9) 80%); }
+#rsvp::before   { content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background: radial-gradient(ellipse 60% 60% at 50% 52%, rgba(201,168,76,.05) 0%, transparent 70%),
+              radial-gradient(ellipse 100% 100% at 50% 50%, transparent 30%, rgba(4,4,4,.92) 80%); }
+
+/* ── RSVP Couple Hands Feature ── */
+.rsvp-hero-img {
+  width: min(340px, 88%); height: 200px;
+  position: relative; z-index: 10; margin: 0 auto 30px;
+  border-radius: 120px / 60px;
+  overflow: hidden;
+  border: 1px solid rgba(201,168,76,.35);
+  box-shadow:
+    0 0 0 4px rgba(201,168,76,.08),
+    0 0 0 8px rgba(201,168,76,.04),
+    0 24px 60px rgba(0,0,0,.6),
+    0 0 80px rgba(201,168,76,.1);
+}
+.rsvp-hero-img img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 35%;
+  filter: saturate(0.85) brightness(0.88);
+  transition: transform 10s ease;
+}
+.rsvp-hero-img:hover img { transform: scale(1.04); }
+.rsvp-hero-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(4,4,4,.55) 100%);
+  pointer-events: none;
+}
+/* Animated gold border ring on RSVP image */
+.rsvp-hero-ring {
+  position: absolute; inset: -5px;
+  border-radius: 130px / 70px;
+  border: 1px solid transparent;
+  background: linear-gradient(#040404, #040404) padding-box,
+              linear-gradient(90deg, rgba(201,168,76,0), rgba(201,168,76,.65), rgba(201,168,76,0)) border-box;
+  pointer-events: none; z-index: 11;
+  animation: rsvpRingGlow 3s ease-in-out infinite alternate;
+}
+@keyframes rsvpRingGlow {
+  0%   { box-shadow: 0 0 18px rgba(201,168,76,.12); }
+  100% { box-shadow: 0 0 42px rgba(201,168,76,.28), 0 0 80px rgba(201,168,76,.08); }
+}
+/* Small gold label on RSVP image */
+.rsvp-hero-label {
+  position: absolute; bottom: 14px; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--fd); font-size: 7.5px; letter-spacing: 4px;
+  color: rgba(201,168,76,.8); text-transform: uppercase;
+  white-space: nowrap; z-index: 12;
+  background: rgba(4,4,4,.45); padding: 5px 14px; border-radius: 20px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(201,168,76,.2);
+}
+
+/* ── RSVP Section enhanced ── */
+#rsvp .rsvp-in { text-align: center; }
+
+/* ── Per-section title glow colours ── */
+.sufi-title-glow  { text-shadow: 0 0 55px rgba(100,163,214,.44), 0 0 120px rgba(100,163,214,.18); }
+.haldi-title-glow { text-shadow: 0 0 55px rgba(244,184,200,.5),  0 0 110px rgba(232,121,154,.2); }
+.meh-title-glow   { text-shadow: 0 0 55px rgba(82,183,136,.44),  0 0 120px rgba(82,183,136,.18); }
+.wed-title-glow   { text-shadow: 0 0 65px rgba(192,57,43,.54),   0 0 130px rgba(192,57,43,.22); }
+
+/* ── Separator ornament enhanced ── */
+.section-ornament {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 1px; height: 60px; z-index: 5;
+  background: linear-gradient(to bottom, rgba(201,168,76,.6), transparent);
+}
+.section-ornament::before {
+  content: '✦'; position: absolute; top: -10px; left: -7px;
+  color: var(--g); font-size: 12px; opacity: .55;
+}
+
+/* ── Section top ornament ── */
+.scene + .scene { position: relative; }
+.scene + .scene::before { z-index: 6; }
+
+/* ── Enhanced section BOTTOM fade for seamless transitions ── */
+#sufi::after, #haldi::after, #mehendi::after, #wedding::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+  background: linear-gradient(to bottom, transparent, #040404);
+  z-index: 8; pointer-events: none;
+}
+/* Section TOP fade */
+#sufi, #haldi, #mehendi, #wedding, #rsvp {
+  padding-top: 100px; padding-bottom: 100px;
+}
+
+/* ── Sufi title extra glow (blue night palette) ── */
+#sufi h2 {
+  text-shadow: 0 0 55px rgba(100,163,214,.55), 0 0 120px rgba(201,168,76,.3) !important;
+}
+
+/* ── Haldi background extra warm layer ── */
+#haldi .petals { z-index: 3; }
+
+/* ── RSVP enhanced glass form ── */
+#rsvp .glass {
+  border-color: rgba(201,168,76,.28) !important;
+  background: rgba(255,255,255,.035) !important;
+  box-shadow: 0 0 60px rgba(201,168,76,.06), inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+/* ── RSVP: Remove old plain background since image handles it ── */
+#rsvp {
+  background: transparent !important;
+}
+
+/* ── Floating edge glow on RSVP section ── */
+#rsvp::after {
+  display: none !important; /* handled by sbgi + overlay */
+}
+
+/* ── Each section min-height taller ── */
+#sufi, #haldi, #wedding { min-height: 105vh; }
+
+/* ── Better event section canvas z-index ── */
+.pcan { z-index: 2 !important; }
+
+/* ── RSVP Member selector ── */
+.member-opt { cursor: pointer; }
+.member-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px; border-radius: 10px;
+  border: 1px solid rgba(201,168,76,.28);
+  background: rgba(255,255,255,.03);
+  font-family: var(--fd); font-size: 14px; letter-spacing: 1px;
+  color: rgba(201,168,76,.65);
+  transition: all .25s; cursor: pointer;
+  user-select: none;
+}
+.member-opt input:checked + .member-btn {
+  background: linear-gradient(135deg, rgba(201,168,76,.28), rgba(232,201,127,.12));
+  border-color: var(--g);
+  color: var(--gl);
+  box-shadow: 0 0 22px rgba(201,168,76,.2), inset 0 0 14px rgba(201,168,76,.05);
+  transform: translateY(-2px);
+}
+.member-btn:hover {
+  border-color: rgba(201,168,76,.6);
+  color: var(--gl);
+  background: rgba(201,168,76,.08);
+}
+
+/* ── Sufi Quote Block ── */
+.sufi-quote-wrap {
+  display: flex; align-items: center; gap: 16px;
+  margin: 6px 0 22px; padding: 18px 24px;
+  background: rgba(15,40,95,.25);
+  border: 1px solid rgba(100,163,214,.18);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+.sufi-quote-bar {
+  flex-shrink: 0; width: 3px; height: 44px; border-radius: 2px;
+  background: linear-gradient(to bottom, rgba(201,168,76,.4), transparent);
+}
+.sufi-quote-text {
+  font-family: var(--fp); font-style: italic;
+  font-size: clamp(15px, 2.1vw, 18px);
+  color: rgba(253,246,227,.85); line-height: 1.75;
+  flex: 1; text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* ── HERO: stronger visible subtitle ── */
+.h-sub {
+  color: rgba(253,246,227,.68) !important;
+  font-size: clamp(16px, 2.5vw, 22px) !important;
+  letter-spacing: 3px !important;
+}
+.h-date {
+  color: rgba(253,246,227,.52) !important;
+  font-size: 11px !important;
+  letter-spacing: 7px !important;
+}
+
+/* ── Section eyebrow labels — more visible ── */
+.eyebrow {
+  font-size: 10.5px !important;
+  letter-spacing: 6px !important;
+  opacity: 1 !important;
+  color: var(--g) !important;
+}
+
+/* ── Glass cards: slightly more luminous ── */
+.glass {
+  background: rgba(255,255,255,.038) !important;
+  border-color: rgba(201,168,76,.22) !important;
+}
+
+/* ── Haldi section: quote more visible ── */
+#haldi p[style*="rgba(244,184,200"] {
+  color: rgba(244,184,200,.85) !important;
+  font-size: clamp(15px,2.1vw,18px) !important;
+}
+
+/* ── Wedding timeline: time labels more readable ── */
+.tlt { color: var(--gl) !important; font-size: 13px !important; }
+
+/* ── Mehendi quote more visible ── */
+.meh-quote {
+  color: rgba(149,213,178,.85) !important;
+  font-size: clamp(15px,2vw,17px) !important;
+  border-left-color: rgba(82,183,136,.5) !important;
+}
+
+/* ── RSVP section quote more visible ── */
+#rsvp p[style*="rgba(253,246,227"] {
+  color: rgba(253,246,227,.75) !important;
+  font-size: clamp(15px,2vw,18px) !important;
+}
+
+/* ── hcard (hosted by) text more readable ── */
+.hcard-n { color: rgba(253,246,227,.88) !important; font-size: clamp(15px,2.2vw,18px) !important; }
+.hcard-t { color: rgba(201,168,76,.72) !important; font-size: 10px !important; letter-spacing: 5px !important; }
+
+/* ── Wedding section quote more visible ── */
+#wedding p[style*="rgba(232,160,160"] {
+  color: rgba(232,160,160,.85) !important;
+  font-size: clamp(15px,2.1vw,18px) !important;
+}
+
+/* ── RSVP form labels sharper ── */
+.fl { color: rgba(201,168,76,.82) !important; font-size: 9.5px !important; letter-spacing: 3.5px !important; }
+
+/* ── Thank you card text ── */
+.ty p { color: rgba(253,246,227,.78) !important; font-size: 17px !important; }
 </style>
 </head>
 <body>
@@ -1091,6 +1402,7 @@ footer {
      SUFI NIGHT
 ══════════════════════════════════════════════════ -->
 <section class="scene" id="sufi">
+  <img class="sbgi" loading="eager" src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true">
   <canvas class="pcan" id="c-sufi"></canvas>
   <div class="stars-wrap" id="starsWrap"></div>
   <div class="moon"></div>
@@ -1108,9 +1420,11 @@ footer {
       cordially invite you to grace Riddhi's wedding celebrations with your presence…
     </p>
 
-    <p class="gsap-up" style="font-family:var(--fp);font-style:italic;font-size:clamp(14px,2vw,17px);color:rgba(253,246,227,.5);margin-bottom:4px;">
-      "A soulful evening where qawwali meets the divine — and every note carries love"
-    </p>
+    <div class="sufi-quote-wrap gsap-up">
+      <div class="sufi-quote-bar"></div>
+      <p class="sufi-quote-text">"A soulful evening where qawwali meets the divine — and every note carries love"</p>
+      <div class="sufi-quote-bar" style="background:linear-gradient(to left,rgba(201,168,76,.4),transparent);"></div>
+    </div>
 
     <!-- ── ALI ZAIN SHOWCASE ── -->
     <div class="ali-showcase gsap-scale">
@@ -1185,20 +1499,18 @@ footer {
     <div class="glass gsap-up" style="margin:18px 0;text-align:left;">
       <div class="dr"><span class="di">📅</span><span class="dt">Wednesday, 15 April 2026</span></div>
       <div class="dr"><span class="di">⏰</span><span class="dt">8:00 PM onwards</span></div>
-      <div class="dr"><span class="di">📍</span><span class="dt">Maverick, Pakhowal Road, Ludhiana</span></div>
+      <div class="dr"><span class="di">📍</span><span class="dt">Maverick Resort, Pakhowal Road, Ludhiana</span></div>
     </div>
 
     <div class="brow gsap-up">
-      <a class="btn btn-g" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sufi+Night+-+Riddhi+%26+Ankit&dates=20260415T143000Z/20260416T020000Z&details=Live+Performance+by+Ali+Zain+%F0%9F%8E%A4&location=Maverick,+Pakhowal+Rd,+Ludhiana" target="_blank" rel="noopener">
+      <a class="btn btn-g" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sufi+Night+-+Riddhi+%26+Ankit&dates=20260415T143000Z/20260416T020000Z&details=Live+Performance+by+Ali+Zain+%F0%9F%8E%A4&location=Maverick+Resort,+Pakhowal+Rd,+Ludhiana" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Add to Calendar
       </a>
-      <a class="dir-btn btn-g" href="https://www.google.com/maps/dir/?api=1&destination=Maverick+Pakhowal+Road+Ludhiana+Punjab" target="_blank" rel="noopener" onclick="driveAnim(event,this)">
-        <span class="road"></span>
+      <a class="dir-btn btn-g" href="https://www.google.com/maps/dir/?api=1&destination=Maverick+Resort+Pakhowal+Road+Ludhiana+Punjab" target="_blank" rel="noopener">
         <span class="dir-car">🚗</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        <span class="dir-label-default">Get Directions</span>
-        <span class="dir-label-going">On the way… 🛣️</span>
+        Get Directions
         <span class="dir-pin">📍</span>
       </a>
     </div>
@@ -1209,6 +1521,7 @@ footer {
      HALDI
 ══════════════════════════════════════════════════ -->
 <section class="scene" id="haldi">
+  <img class="sbgi" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true">
   <canvas class="pcan" id="c-haldi"></canvas>
   <div class="petals" id="pWrap"></div>
 
@@ -1248,12 +1561,10 @@ footer {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Add to Calendar
       </a>
-      <a class="dir-btn btn-rose" href="https://www.google.com/maps/dir/?api=1&destination=Aagaz+Hotel+Ludhiana+Punjab" target="_blank" rel="noopener" onclick="driveAnim(event,this)">
-        <span class="road"></span>
+      <a class="dir-btn btn-rose" href="https://www.google.com/maps/dir/?api=1&destination=Aagaz+Hotel+Ludhiana+Punjab" target="_blank" rel="noopener">
         <span class="dir-car">🚗</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        <span class="dir-label-default">Get Directions</span>
-        <span class="dir-label-going">On the way… 🛣️</span>
+        Get Directions
         <span class="dir-pin">📍</span>
       </a>
     </div>
@@ -1264,6 +1575,7 @@ footer {
      MEHENDI — Mughal Festival Card
 ══════════════════════════════════════════════════ -->
 <section class="scene" id="mehendi" style="padding:60px 20px;">
+  <img class="sbgi" src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true">
   <canvas class="pcan" id="c-mehendi"></canvas>
   <div class="meh-pattern"></div>
   <div class="meh-lines"></div>
@@ -1355,9 +1667,9 @@ footer {
             </div>
 
             <div class="meh-details-card">
-              <div class="dr" style="border-color:rgba(82,183,136,.12);"><span class="di">📅</span><span class="dt">Saturday, 18 April 2026</span></div>
-              <div class="dr" style="border-color:rgba(82,183,136,.12);"><span class="di">⏰</span><span class="dt">7:00 PM onwards</span></div>
-              <div class="dr" style="border-color:rgba(82,183,136,.12);border-bottom:none;"><span class="di">📍</span><span class="dt">Mehar Villa (Residence), Ludhiana</span></div>
+              <div class="dr" style="border-color:rgba(82,183,136,.12);"><span class="di">📅</span><span class="dt" style="font-size:clamp(16px,2.4vw,19px);">Saturday, 18 April 2026</span></div>
+              <div class="dr" style="border-color:rgba(82,183,136,.12);"><span class="di">⏰</span><span class="dt" style="font-size:clamp(16px,2.4vw,19px);">7:00 PM onwards</span></div>
+              <div class="dr" style="border-color:rgba(82,183,136,.12);border-bottom:none;"><span class="di">📍</span><span class="dt" style="font-size:clamp(16px,2.4vw,19px);">Mehar Villa (Residence), Ludhiana</span></div>
             </div>
 
             <!-- What to expect -->
@@ -1378,12 +1690,10 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 Add to Calendar
               </a>
-              <a class="dir-btn btn-teal" href="https://www.google.com/maps/dir/?api=1&destination=Mehar+Villa+Ludhiana+Punjab" target="_blank" rel="noopener" onclick="driveAnim(event,this)">
-                <span class="road"></span>
+              <a class="dir-btn btn-teal" href="https://www.google.com/maps/dir/?api=1&destination=Mehar+Villa+Ludhiana+Punjab" target="_blank" rel="noopener">
                 <span class="dir-car">🚗</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                <span class="dir-label-default">Get Directions</span>
-                <span class="dir-label-going">On the way… 🛣️</span>
+                Get Directions
                 <span class="dir-pin">📍</span>
               </a>
             </div>
@@ -1398,6 +1708,7 @@ footer {
      WEDDING
 ══════════════════════════════════════════════════ -->
 <section class="scene" id="wedding">
+  <img class="sbgi" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true">
   <canvas class="pcan" id="c-wedding"></canvas>
   <div class="fire"></div>
   <svg class="mandap-svg" viewBox="0 0 700 370" fill="white">
@@ -1441,12 +1752,10 @@ footer {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Add to Calendar
       </a>
-      <a class="dir-btn btn-red" href="https://www.google.com/maps/dir/?api=1&destination=Stallone+Manor+Ludhiana+Punjab" target="_blank" rel="noopener" onclick="driveAnim(event,this)">
-        <span class="road"></span>
+      <a class="dir-btn btn-red" href="https://www.google.com/maps/dir/?api=1&destination=Stallone+Manor+Ludhiana+Punjab" target="_blank" rel="noopener">
         <span class="dir-car">🚗</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        <span class="dir-label-default">Get Directions</span>
-        <span class="dir-label-going">On the way… 🛣️</span>
+        Get Directions
         <span class="dir-pin">📍</span>
       </a>
     </div>
@@ -1457,6 +1766,7 @@ footer {
      RSVP
 ══════════════════════════════════════════════════ -->
 <section class="scene" id="rsvp">
+  <img class="sbgi" src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true">
   <canvas class="pcan" id="c-rsvp"></canvas>
 
   <div class="rsvp-in">
@@ -1480,7 +1790,32 @@ footer {
         <label class="fl">Your Name *</label>
         <input class="fi" id="fName" type="text" placeholder="Full Name" autocomplete="name">
       </div>
-      <button class="sbtn" onclick="submitRSVP()">✦ &nbsp;Confirm My Attendance &nbsp;✦</button>
+      <div class="ff">
+        <label class="fl">Number of Members Attending *</label>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <label class="member-opt">
+            <input type="radio" name="members" value="1" style="display:none;">
+            <span class="member-btn">1</span>
+          </label>
+          <label class="member-opt">
+            <input type="radio" name="members" value="2" style="display:none;">
+            <span class="member-btn">2</span>
+          </label>
+          <label class="member-opt">
+            <input type="radio" name="members" value="3" style="display:none;">
+            <span class="member-btn">3</span>
+          </label>
+          <label class="member-opt">
+            <input type="radio" name="members" value="4" style="display:none;">
+            <span class="member-btn">4</span>
+          </label>
+          <label class="member-opt">
+            <input type="radio" name="members" value="5" style="display:none;">
+            <span class="member-btn">5+</span>
+          </label>
+        </div>
+      </div>
+      <button class="sbtn" onclick="submitRSVP()">✦ &nbsp;Confirm My Presence &nbsp;✦</button>
     </div>
 
     <div class="glass ty" id="tyCard">
@@ -1508,16 +1843,25 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <span class="ft-s">Riddhi ❤️ Ankit</span>
-  <p class="ft-t">With love from Suman &amp; Arun Chandok · Ludhiana, Punjab</p>
-  <p class="ft-t" style="margin-top:5px;">April 15 – 20, 2026</p>
+  <div class="ft-ornament">
+    <div class="ft-ornament-line"></div>
+    <div class="ft-ornament-diamond"></div>
+    <div class="ft-ornament-line" style="background:linear-gradient(to left,transparent,rgba(201,168,76,.45),transparent);"></div>
+  </div>
+  <span class="ft-s">Riddhi <span class="ft-heart">❤️</span> Ankit</span>
+  <p class="ft-t">With love &amp; blessings from</p>
+  <p class="ft-t" style="color:rgba(201,168,76,.85);font-family:var(--fp);font-size:17px;font-style:normal;font-weight:600;letter-spacing:.5px;">Mrs. Suman Chandok &amp; Mr. Arun Chandok</p>
+  <p class="ft-t" style="color:rgba(253,246,227,.55);font-size:13px;">Parents of the Bride &nbsp;·&nbsp; Ludhiana, Punjab</p>
+  <div class="ft-date">April 15 – 20 &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; Ludhiana</div>
+  <div class="ft-divider"></div>
   <div class="ft-nav">
     <button class="ftn" onclick="G('sufi')">🌙 Sufi Night · Apr 15</button>
     <button class="ftn" onclick="G('haldi')">🌸 Pink Haldi · Apr 18</button>
     <button class="ftn" onclick="G('mehendi')">🌿 Mehendi · Apr 18</button>
     <button class="ftn" onclick="G('wedding')">💍 Wedding · Apr 20</button>
-    <button class="ftn" onclick="G('rsvp')" style="border-color:rgba(201,168,76,.4);color:var(--g);">RSVP ✦</button>
+    <button class="ftn" onclick="G('rsvp')" style="border-color:rgba(201,168,76,.55);color:var(--gl);background:rgba(201,168,76,.08);">✦ RSVP ✦</button>
   </div>
+  <p class="ft-copy">Crafted with love · Riddhi &amp; Ankit · 2026</p>
 </footer>
 
 <script>
@@ -1820,6 +2164,9 @@ function G(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth
 ══════════════════════════════════════════ */
 function submitRSVP() {
   const name = document.getElementById('fName').value.trim();
+  const memberRadio = document.querySelector('input[name="members"]:checked');
+
+  // Validate name
   if (!name) {
     const inp = document.getElementById('fName');
     inp.style.borderColor = 'rgba(192,57,43,.8)';
@@ -1829,6 +2176,31 @@ function submitRSVP() {
     setTimeout(() => { inp.style.borderColor = ''; inp.style.boxShadow = ''; }, 2500);
     return;
   }
+
+  // Validate members
+  if (!memberRadio) {
+    const memberWrap = document.querySelector('input[name="members"]').closest('.ff');
+    gsap.fromTo(memberWrap, { x: -8 }, { x: 8, duration: .08, repeat: 5, yoyo: true });
+    const btns = document.querySelectorAll('.member-btn');
+    btns.forEach(b => { b.style.borderColor = 'rgba(192,57,43,.6)'; });
+    setTimeout(() => btns.forEach(b => b.style.borderColor = ''), 2000);
+    return;
+  }
+
+  const members = memberRadio.value;
+  const waMsg = encodeURIComponent(
+    `🌸 *RSVP — Riddhi & Ankit Wedding*
+
+` +
+    `👤 *Name:* ${name}
+` +
+    `👥 *Members Attending:* ${members}
+
+` +
+    `✦ Confirming presence for the celebrations! 🎉`
+  );
+  const waURL = `https://wa.me/919814123405?text=${waMsg}`;
+
   const card = document.getElementById('rsvpCard');
   gsap.to(card, {
     opacity: 0, y: 20, duration: .4, ease: 'power2.in',
@@ -1837,31 +2209,11 @@ function submitRSVP() {
       const ty = document.getElementById('tyCard');
       ty.classList.add('show');
       gsap.from(ty, { opacity: 0, y: 20, duration: .8, ease: 'power3.out' });
+      // Open WhatsApp
+      setTimeout(() => window.open(waURL, '_blank'), 400);
     }
   });
 }
-/* ══════════════════════════════════════════
-   CAR DIRECTIONS ANIMATION
-══════════════════════════════════════════ */
-function driveAnim(e, btn) {
-  // If already animating, let it open immediately
-  if (btn.classList.contains('driving')) return;
-
-  e.preventDefault(); // stop link from opening
-  const href = btn.getAttribute('href');
-
-  btn.classList.add('driving');
-
-  // After animation completes (1.9s), open the link
-  setTimeout(() => {
-    window.open(href, '_blank', 'noopener');
-    // Reset button after a beat
-    setTimeout(() => {
-      btn.classList.remove('driving');
-    }, 600);
-  }, 1900);
-}
-
 </script>
 </body>
 </html>
